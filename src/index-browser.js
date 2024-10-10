@@ -1,40 +1,45 @@
-import mdc from './index-node'
-import Chart from 'chart.js'
-import Cookies from 'js-cookie'
+import mdc from "./index-node";
+import Chart from "chart.js";
+// import Cookies from 'js-cookie'
 
-import 'mermaid'
-import 'mermaid/dist/mermaid.css'
+import "mermaid";
+import "mermaid/dist/mermaid.css";
 
-mdc.loadPreferences = () => {
-  let ganttAxisFormat = Cookies.get('gantt-axis-format')
-  if (ganttAxisFormat === undefined) {
-    ganttAxisFormat = '%Y-%m-%d'
-  }
-  mdc.mermaid.gantt.axisFormat(ganttAxisFormat)
-  return { 'gantt-axis-format': ganttAxisFormat }
-}
-mdc.loadPreferences()
+// mdc.loadPreferences = () => {
+//   let ganttAxisFormat = Cookies.get('gantt-axis-format')
+//   if (ganttAxisFormat === undefined) {
+//     ganttAxisFormat = '%Y-%m-%d'
+//   }
+//   mdc.mermaid.gantt.axisFormat(ganttAxisFormat)
+//   return { 'gantt-axis-format': ganttAxisFormat }
+// }
+// mdc.loadPreferences()
+
+mdc.mermaid.gantt.axisFormat("%Y-%m-%d");
 
 mdc.inited = () => {
   // this is a hook method
-}
+};
 mdc.init = (markdown) => {
-  let result = mdc.render(markdown)
-  document.getElementById('preview').innerHTML = result
+  let result = mdc.render(markdown);
+  document.getElementById("preview").innerHTML = result;
 
   // mermaid
-  window.mermaid.init(undefined, document.querySelectorAll('#preview .mermaid'))
+  window.mermaid.init(
+    undefined,
+    document.querySelectorAll("#preview .mermaid")
+  );
 
   // charts
-  document.querySelectorAll('#preview .chartjs').forEach(element => {
+  document.querySelectorAll("#preview .chartjs").forEach((element) => {
     try {
-      new Chart(element, JSON.parse(element.textContent)) // eslint-disable-line no-new
+      new Chart(element, JSON.parse(element.textContent)); // eslint-disable-line no-new
     } catch (e) {
-      element.outerHTML = `<pre>Chart.js complains: "${e}"</pre>`
+      element.outerHTML = `<pre>Chart.js complains: "${e}"</pre>`;
     }
-  })
+  });
 
-  mdc.inited()
-}
+  mdc.inited();
+};
 
-export default mdc
+export default mdc;

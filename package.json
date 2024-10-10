@@ -2,7 +2,7 @@
   "name": "markdown-core",
   "description": "An extensible markdown engine.",
   "license": "MIT",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "src/index-node.js",
   "scripts": {
     "upgrade": "node_modules/.bin/yarn-upgrade-all",
@@ -46,7 +46,6 @@
     "css-loader": "^0.28.4",
     "extract-text-webpack-plugin": "^2.1.0",
     "http-server": "^0.10.0",
-    "js-cookie": "^2.1.4",
     "mocha": "^3.4.2",
     "standard": "^10.0.2",
     "style-loader": "^0.18.1",
